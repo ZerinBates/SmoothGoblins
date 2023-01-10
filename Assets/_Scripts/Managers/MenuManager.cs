@@ -6,10 +6,21 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
-    [SerializeField] private GameObject _SelectedHeroMenu,_TileObject,_TileUnitObject,EndTurnButton;
+    [SerializeField] private GameObject _SelectedHeroMenu,_TileObject,_TileUnitObject,EndTurnButton,_Popup;
     private void Awake()
     {
         Instance = this;
+    }
+    public void ShowPopup(bool show)
+    {
+        if (show)
+        {
+            _Popup.SetActive(true);
+        }
+        else
+        {
+            _Popup.SetActive(false);
+        }
     }
     public void ShowTileInfo(Tile tile)
     {
@@ -38,10 +49,10 @@ public class MenuManager : MonoBehaviour
                 _SelectedHeroMenu.SetActive(false);
                 return;
             }
-
+            _SelectedHeroMenu.GetComponent<DiceCreator>().CreateDice(2);
             // _SelectedHeroMenu.GetComponentInChildren<Text>().text=h.UnitName + ": " + h.GetStats().Hp+"\n m:"+UnitManager.Instance.MovePoint+ " p:" + UnitManager.Instance.ActivePoint;
             _SelectedHeroMenu.GetComponentInChildren<Text>().text = h.UnitName + ": HP " + h.GetStats().Hp + "\n m:" + UnitManager.Instance.MovePoint + " p:" + UnitManager.Instance.ActivePoint +
-                "\n" + "Def " + h.GetStats().Defence + "\n" + "Atk " + h.GetStats().Attack;
+                "\n" + "Def " + h.GetStats().Durability + "\n" + "Atk " + h.GetStats().Attack;
             _SelectedHeroMenu.SetActive(true);
         }
 }

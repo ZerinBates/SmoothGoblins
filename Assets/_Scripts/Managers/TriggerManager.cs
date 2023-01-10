@@ -31,7 +31,7 @@ public enum TriggerEvent
     Damaged,
     TurnStart,
     TurnEnd,
-    Detect
+    Encounter
 
 }
 

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UnitManager : MonoBehaviour
 {
+    public int HeroCount;
+    public int EnemyCount;
     public int maxDistance = 5;
     public List<ScriptableUnits> _units;
     public static UnitManager Instance;
@@ -161,7 +163,7 @@ public class UnitManager : MonoBehaviour
     //Spawners 
     public void SpawnHeroes()
     {
-        int HeroCount = 4;
+        // HeroCount = 4;
         for(int i = 0; i < HeroCount; i++)
         {
             var randomPrefab = GetRandomeUnit<UnitBasic>(Faction.Hero);
@@ -176,8 +178,8 @@ public class UnitManager : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-        int enemyCount = 5;
-        for (int i = 0; i < enemyCount; i++)
+        // EnemyCount = 5;
+        for (int i = 0; i < EnemyCount; i++)
         {
             var randomPrefab = GetRandomeUnit<UnitBasic>(Faction.Enemy);
             var spawnedEnemy = Instantiate(randomPrefab);
@@ -291,4 +293,27 @@ public class UnitManager : MonoBehaviour
         }
 
     }
-}
+    public void GroupDamage(List<UnitBasic> group,int damage,bool peircing =false)
+    {
+        List<UnitBasic> grouptemp = group;
+        bool finish = true;
+        int x = 0;
+        while (finish&&x<10)
+        {
+            x++;
+            finish = false;
+            foreach (UnitBasic unit in grouptemp)
+            { 
+                    if (!unit.TakeDamage(damage))
+                    {
+                    grouptemp.Remove(unit);
+                        finish = true;
+                        break;
+                    }
+                }
+
+            }
+
+        }
+    }
+

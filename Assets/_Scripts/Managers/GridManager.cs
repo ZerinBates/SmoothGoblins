@@ -6,6 +6,7 @@ using System;
 
 public class GridManager : MonoBehaviour
 {
+    public Item finish;
     public List<MapEvents>events= new List<MapEvents>();
     public static GridManager Instance;
     public bool start = true;
@@ -54,7 +55,7 @@ public class GridManager : MonoBehaviour
     public void GenerateGrid(bool WaveFunction = false)
     {
         _tiles = new Dictionary<Vector2, Tile>();
-        if (WaveFunction)
+        if (WaveFunction&&false)
         {
             OverlapMap gen = generate.GetComponent<OverlapMap>();
             gen.width = _width + 1;
@@ -87,7 +88,7 @@ public class GridManager : MonoBehaviour
                     Tile _chosenTile;
                     if (x != 50 && y != 50)
                     {
-                        _chosenTile = UnityEngine.Random.Range(0, 6) == 3 ? _mountainTile : _mountainTile;
+                        _chosenTile = UnityEngine.Random.Range(0, 6) == 3 ? _grassTile : _grassTile;
                     }
                     else
                     {
@@ -108,22 +109,29 @@ public class GridManager : MonoBehaviour
             SetTile(0, 0, spawnedTile1);
         }
         //set events
-        MapEvents m = new GoblinNook();
-        events.Add(m);
-        for (int k = 0; k < 2; k++)
+        if (false)
         {
-           MapEvents chosen =  events.OrderBy(o => UnityEngine.Random.value).First();
-            int x = UnityEngine.Random.Range(5, _width);
-            int y = UnityEngine.Random.Range(5, _height);
-            while (!chosen.requirements(x, y))
+            MapEvents m = new GoblinNook();
+            events.Add(m);
+            for (int k = 0; k < 2; k++)
             {
-                 x = UnityEngine.Random.Range(5, _width);
-                 y = UnityEngine.Random.Range(5, _height);
-            }
+                MapEvents chosen = events.OrderBy(o => UnityEngine.Random.value).First();
+                int x = UnityEngine.Random.Range(5, _width);
+                int y = UnityEngine.Random.Range(5, _height);
+                while (!chosen.requirements(x, y))
+                {
+                    x = UnityEngine.Random.Range(5, _width);
+                    y = UnityEngine.Random.Range(5, _height);
+                }
 
-            chosen.startSeed(x, y);
+                chosen.startSeed(x, y);
+            }
         }
-        
+        Tile fin =GetTileAtPosition(_width - 1, _height - 1);
+        if (fin.SetItem(finish))
+        {
+            Debug.Log(finish);
+        }
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)

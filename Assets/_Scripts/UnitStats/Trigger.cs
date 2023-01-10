@@ -52,6 +52,7 @@ public class StrengthenTrigger : Trigger
         return true;
     }
 }*/
+//gives unit a buff for all adjacent allies
 public class SwarmTrigger : Trigger
 {
     AttackStyle style;
@@ -75,7 +76,7 @@ public class SwarmTrigger : Trigger
             {
                 if (triggerUnit.Faction == GetTriggerer().Faction)
                 {
-                    triggerUnit.GetStats().AttackTemp += 1;
+                    triggerUnit.GetStats().AddBuff(stats.strength,1);
                 }
             }
         }
@@ -105,7 +106,7 @@ public class SheilderTrigger : Trigger
             {
                 if (triggerUnit.Faction == GetTriggerer().Faction)
                 {
-                    triggerUnit.GetStats().DefenceTemp += 1;
+                    triggerUnit.GetStats().AddBuff(stats.durability,1);
                 }
             }
         }
@@ -148,7 +149,7 @@ public class SniperTrigger : Trigger
                                 if (GridManager.Instance.GetTileAtPosition(x + x1, y + y1).OccupiedUnit.Faction == GetTriggerer().Faction)
                                 {
 
-                                        triggerUnit.GetStats().DefenceTemp--;
+                                        triggerUnit.GetStats().AddBuff(stats.durability, 1);
                                     }
                                 }
                             }

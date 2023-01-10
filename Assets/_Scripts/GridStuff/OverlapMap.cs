@@ -158,22 +158,22 @@ class OverlapMap : MonoBehaviour
                     GridManager.Instance._tiles[new Vector2(x, y)] = spawnedTile;
                 }
                 else { */
-                
-                int v = (int)model.Sample(x, y);
-                    if (v != 99 && v < training.tiles.Length)
-                    {
-                        GameObject fab = training.tiles[v] as GameObject;
-                        Tile t = fab.GetComponent<Tile>();
 
-                        var spawnedTile = Instantiate(t, new Vector3(x, y), Quaternion.identity);
-                        spawnedTile.name = $"Tile {x},{y}";
-                        spawnedTile.Init(x, y);
-                        GridManager.Instance._tiles[new Vector2(x, y)] = spawnedTile;
-                    }
-              //  }
+                int v = (int)model.Sample(x, y);
+                if (v != 99 && v < training.tiles.Length)
+                {
+                    GameObject fab = training.tiles[v] as GameObject;
+                    Tile t = fab.GetComponent<Tile>();
+
+                    var spawnedTile = Instantiate(t, new Vector3(x, y), Quaternion.identity);
+                    spawnedTile.name = $"Tile {x},{y}";
+                    spawnedTile.Init(x, y);
+                    GridManager.Instance._tiles[new Vector2(x, y)] = spawnedTile;
+                }
+                //  }
             }
         }
-    }
+    } 
 
     /*
     public void Draw()

@@ -27,6 +27,9 @@ public class MapEvents
     int eventSize = 0;
     public void setEventSize(int num)
     { eventSize = num;}
+
+
+    //start seed
     public void startSeed(int x, int y)
     {
         for (int i=x;i<x+eventSize;i++)

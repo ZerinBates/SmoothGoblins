@@ -27,6 +27,7 @@ public class Tile : MonoBehaviour
     private bool walkMarked=false;
     //private bool attackMarked = false;
     public string TileName;
+    public Item OccupiedItem;
     public UnitBasic OccupiedUnit;
     public List<Tile> Neighbors { get; protected set; }
     public bool walkable => _iswalkable && OccupiedUnit == null;
@@ -184,6 +185,15 @@ public class Tile : MonoBehaviour
 
         }
 
+    }
+    public bool SetItem(Item i)
+    {
+        if (i.OccupiedTile != null) i.OccupiedTile.OccupiedItem = null;
+        i.transform.position = this.transform.position;
+        this.OccupiedItem = i;
+        i.OccupiedTile = this;
+        //        UnitManager.Instance.PartyLight();
+        return true;
     }
     public bool SetUnit(UnitBasic u)
     {
