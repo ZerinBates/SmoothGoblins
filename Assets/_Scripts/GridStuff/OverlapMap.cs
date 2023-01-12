@@ -55,7 +55,10 @@ class OverlapMap : MonoBehaviour
     {
         if (group != null)
         {
-            if (Application.isPlaying) { Destroy(group.gameObject); }
+            if (Application.isPlaying)
+            {
+                Destroy(group.gameObject); 
+            }
             else
             {
                 DestroyImmediate(group.gameObject);
@@ -106,7 +109,14 @@ class OverlapMap : MonoBehaviour
         for (int i = 0; i < output.transform.childCount; i++)
         {
             GameObject go = output.transform.GetChild(i).gameObject;
-            if (Application.isPlaying) { Destroy(go); } else { DestroyImmediate(go); }
+            if (Application.isPlaying)
+            {
+                Destroy(go); 
+            }
+            else
+            {
+                DestroyImmediate(go);
+            }
         }
         group = new GameObject(training.gameObject.name).transform;
         group.parent = output.transform;
@@ -141,6 +151,8 @@ class OverlapMap : MonoBehaviour
         return rendering[x, y];
     }
     public Pathfinding board;
+
+
     public void Draw()
     {
         for (int y = 0; y < depth; y++)
@@ -158,94 +170,96 @@ class OverlapMap : MonoBehaviour
                     GridManager.Instance._tiles[new Vector2(x, y)] = spawnedTile;
                 }
                 else { */
-                
-                int v = (int)model.Sample(x, y);
-                    if (v != 99 && v < training.tiles.Length)
-                    {
-                        GameObject fab = training.tiles[v] as GameObject;
-                        Tile t = fab.GetComponent<Tile>();
 
-                        var spawnedTile = Instantiate(t, new Vector3(x, y), Quaternion.identity);
-                        spawnedTile.name = $"Tile {x},{y}";
-                        spawnedTile.Init(x, y);
-                        GridManager.Instance._tiles[new Vector2(x, y)] = spawnedTile;
-                    }
-              //  }
+                int v = (int)model.Sample(x, y);
+                if (v != 99 && v < training.tiles.Length)
+                {
+                    GameObject fab = training.tiles[v] as GameObject;
+                    Tile t = fab.GetComponent<Tile>();
+
+                    var spawnedTile = Instantiate(t, new Vector3(x, y), Quaternion.identity);
+                    spawnedTile.name = $"Tile {x},{y}";
+                    spawnedTile.Init(x, y);
+                    GridManager.Instance._tiles[new Vector2(x, y)] = spawnedTile;
+                }
+                //  }
             }
         }
     }
 
-    /*
-    public void Draw()
+}
+
+/*
+public void Draw()
+{
+    if (output == null) { return; }
+    if (group == null) { return; }
+
+    undrawn = false;
+    try
     {
-        if (output == null) { return; }
-        if (group == null) { return; }
-
-        undrawn = false;
-        try
+        board = new Pathfinding(width, depth);
+        for (int y = 0; y < depth; y++)
         {
-            board = new Pathfinding(width, depth);
-            for (int y = 0; y < depth; y++)
+            for (int x = 0; x < width; x++)
             {
-                for (int x = 0; x < width; x++)
+                if (rendering[x, y] == null)
                 {
-                    if (rendering[x, y] == null)
+
+                    int v = (int)model.Sample(x, y);
+                    if (v != 99 && v < training.tiles.Length)
                     {
-
-                        int v = (int)model.Sample(x, y);
-                        if (v != 99 && v < training.tiles.Length)
+                        Vector3 pos = new Vector3(x * gridsize, y * gridsize, 0f);
+                        board.GetGrid().GetXY(pos, out int x1, out int y1);
+                        //                   board.setNode(x, y);
+                        int rot = (int)training.RS[v];
+                        GameObject fab = training.tiles[v] as GameObject;
+                        if (fab != null)
                         {
-                            Vector3 pos = new Vector3(x * gridsize, y * gridsize, 0f);
-                            board.GetGrid().GetXY(pos, out int x1, out int y1);
-                            //                   board.setNode(x, y);
-                            int rot = (int)training.RS[v];
-                            GameObject fab = training.tiles[v] as GameObject;
-                            if (fab != null)
-                            {
-                                /*
-                                GameObject tile = (GameObject)Instantiate(fab, new Vector3(), Quaternion.identity);
-                                Vector3 fscale = tile.transform.localScale;
-                                tile.transform.parent = group;
-                                tile.transform.localPosition = pos;
-                                tile.transform.localEulerAngles = new Vector3(0, 0, 360 - (rot * 90));
-                                tile.transform.localScale = fscale;
-                                rendering[x, y] = tile;*/
-    /*                                if (fab.name == "tree")
-                                    {
-                                        PathNode node = new PathNode(board.GetGrid(), x, y);
-                                        node.containsS = "tree";
-                                        node.isWalkable = true;
-                                        node.isVisable = true;
-                                        node.weight = 10;
-                                        board.GetGrid().SetGridObject(x, y, node);
-                                    }
-                                    if (fab.name == "wall")
-                                    {
-                                        PathNode node = new PathNode(board.GetGrid(), x, y);
-                                        node.containsS = "X";
-                                        node.isWalkable = false;
-                                        node.isVisable = false;
-                                        board.GetGrid().SetGridObject(x, y, node);
-                                    }
-
+                            /*
+                            GameObject tile = (GameObject)Instantiate(fab, new Vector3(), Quaternion.identity);
+                            Vector3 fscale = tile.transform.localScale;
+                            tile.transform.parent = group;
+                            tile.transform.localPosition = pos;
+                            tile.transform.localEulerAngles = new Vector3(0, 0, 360 - (rot * 90));
+                            tile.transform.localScale = fscale;
+                            rendering[x, y] = tile;*/
+/*                                if (fab.name == "tree")
+                                {
+                                    PathNode node = new PathNode(board.GetGrid(), x, y);
+                                    node.containsS = "tree";
+                                    node.isWalkable = true;
+                                    node.isVisable = true;
+                                    node.weight = 10;
+                                    board.GetGrid().SetGridObject(x, y, node);
                                 }
+                                if (fab.name == "wall")
+                                {
+                                    PathNode node = new PathNode(board.GetGrid(), x, y);
+                                    node.containsS = "X";
+                                    node.isWalkable = false;
+                                    node.isVisable = false;
+                                    board.GetGrid().SetGridObject(x, y, node);
+                                }
+
                             }
-                            else
-                            {
-                                undrawn = true;
-                            }
+                        }
+                        else
+                        {
+                            undrawn = true;
                         }
                     }
                 }
             }
-            catch (IndexOutOfRangeException)
-            {
-                model = null;
-                return;
-            }
-        }*/
+        }
+        catch (IndexOutOfRangeException)
+        {
+            model = null;
+            return;
+        }
+    }*/
 
-
+/*
 #if UNITY_EDITOR
     [CustomEditor(typeof(OverlapWFC))]
     public class WFCGeneratorEditor : Editor
@@ -270,30 +284,32 @@ class OverlapMap : MonoBehaviour
             DrawDefaultInspector();
         }
     }
-}
+
 #endif
 #if UNITY_EDITOR
-[CustomEditor(typeof(OverlapMap))]
-public class WFCGeneratorEditor1 : Editor
-{
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(OverlapMap))]
+    public class WFCGeneratorEditor1 : Editor
     {
-        OverlapMap generator = (OverlapMap)target;
-        if (generator.training != null)
+        public override void OnInspectorGUI()
         {
-            if (GUILayout.Button("generate"))
+            OverlapMap generator = (OverlapMap)target;
+            if (generator.training != null)
             {
-                generator.Generate();
-            }
-            if (generator.model != null)
-            {
-                if (GUILayout.Button("RUN"))
+                if (GUILayout.Button("generate"))
                 {
-                    generator.Run();
+                    generator.Generate();
+                }
+                if (generator.model != null)
+                {
+                    if (GUILayout.Button("RUN"))
+                    {
+                        generator.Run();
+                    }
                 }
             }
+            DrawDefaultInspector();
         }
-        DrawDefaultInspector();
     }
-}
+
 #endif
+*/

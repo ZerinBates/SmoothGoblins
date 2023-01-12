@@ -2,14 +2,23 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CombatManager
+    - DiceCreator
     - GameManager
     - Goblin
     - GrassTile
     - GridManager
+    - HinderingTile
     - Knight
     - MenuManager
+    - OverlapMap
+    - OverlapWFC
+    - PopupWindow
+    - Ranger
     - ScriptableUnits
     - Shade
+    - StairsDown
+    - TilePainter
+    - Training
     - TriggerManager
     - UnitManager
     - WallTile
@@ -31,10 +40,12 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.Text
+    - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/DeathScene.unity:
     - Class: 1
@@ -54,15 +65,15 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11270}
+      Script: {instanceID: 11272}
     - Class: 114
-      Script: {instanceID: 11564}
+      Script: {instanceID: 11570}
     - Class: 114
-      Script: {instanceID: 12290}
+      Script: {instanceID: 12300}
     - Class: 114
-      Script: {instanceID: 13782}
+      Script: {instanceID: 13814}
     - Class: 114
-      Script: {instanceID: 14410}
+      Script: {instanceID: 14448}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -99,43 +110,65 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11264}
+      Script: {instanceID: 11246}
     - Class: 114
-      Script: {instanceID: 11270}
+      Script: {instanceID: 11266}
     - Class: 114
-      Script: {instanceID: 11564}
+      Script: {instanceID: 11272}
     - Class: 114
-      Script: {instanceID: 11618}
+      Script: {instanceID: 11442}
     - Class: 114
-      Script: {instanceID: 11736}
+      Script: {instanceID: 11570}
     - Class: 114
-      Script: {instanceID: 12290}
+      Script: {instanceID: 11624}
     - Class: 114
-      Script: {instanceID: 12676}
+      Script: {instanceID: 11742}
     - Class: 114
-      Script: {instanceID: 12912}
+      Script: {instanceID: 12300}
     - Class: 114
-      Script: {instanceID: 13082}
+      Script: {instanceID: 12692}
     - Class: 114
-      Script: {instanceID: 13230}
+      Script: {instanceID: 12700}
     - Class: 114
-      Script: {instanceID: 13534}
+      Script: {instanceID: 12828}
     - Class: 114
-      Script: {instanceID: 13682}
+      Script: {instanceID: 12934}
     - Class: 114
-      Script: {instanceID: 13782}
+      Script: {instanceID: 13018}
     - Class: 114
-      Script: {instanceID: 13838}
+      Script: {instanceID: 13106}
     - Class: 114
-      Script: {instanceID: 13852}
+      Script: {instanceID: 13174}
     - Class: 114
-      Script: {instanceID: 14082}
+      Script: {instanceID: 13254}
     - Class: 114
-      Script: {instanceID: 14356}
+      Script: {instanceID: 13298}
     - Class: 114
-      Script: {instanceID: 14410}
+      Script: {instanceID: 13562}
     - Class: 114
-      Script: {instanceID: 14480}
+      Script: {instanceID: 13704}
+    - Class: 114
+      Script: {instanceID: 13714}
+    - Class: 114
+      Script: {instanceID: 13814}
+    - Class: 114
+      Script: {instanceID: 13870}
+    - Class: 114
+      Script: {instanceID: 13884}
+    - Class: 114
+      Script: {instanceID: 14110}
+    - Class: 114
+      Script: {instanceID: 14116}
+    - Class: 114
+      Script: {instanceID: 14392}
+    - Class: 114
+      Script: {instanceID: 14404}
+    - Class: 114
+      Script: {instanceID: 14448}
+    - Class: 114
+      Script: {instanceID: 14498}
+    - Class: 114
+      Script: {instanceID: 14520}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -157,7 +190,13 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: b4e632d39a6ddf0e959c5ed93ea31fe5
+      Hash: 5f1752ed2092162f016c19510c28a8b9
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
+  - hash:
+      serializedVersion: 2
+      Hash: 9b89deb1b21b0a28ff253071456036eb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuManager
@@ -185,6 +224,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: b6236916ced32d4927eb57c737bb8d71
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Encounter
+  - hash:
+      serializedVersion: 2
+      Hash: 33ceebe63a9ccb9ff3b9eb58554108b4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HinderingTile
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -331,6 +382,12 @@ ScriptsOnlyBuild:
     className: RectMask2D
   - hash:
       serializedVersion: 2
+      Hash: a76c494fb36826098d125c7998c79603
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemBasic
+  - hash:
+      serializedVersion: 2
       Hash: 1103fb0758976355cdf9b7d5ce9cb7e0
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -409,7 +466,13 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: ce7220134110227c85be8cfe98bd88f3
+      Hash: 7ae79b68fa520d4feb86ec728fff382a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SimpleTiledWFC
+  - hash:
+      serializedVersion: 2
+      Hash: 44b8eecd426aba0f57a330af922fd8da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemiesBasic
@@ -427,6 +490,12 @@ ScriptsOnlyBuild:
     className: TriggerManager
   - hash:
       serializedVersion: 2
+      Hash: 6701892b001d13cbe85378660ac8a2d0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Training
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -439,7 +508,7 @@ ScriptsOnlyBuild:
     className: SpriteSkinEntity
   - hash:
       serializedVersion: 2
-      Hash: ce7220134110227c85be8cfe98bd88f3
+      Hash: 44b8eecd426aba0f57a330af922fd8da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HeroBasic
@@ -451,13 +520,25 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
+      Hash: 5b7d6b641eda032501bac678685707ac
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DiceCreator
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SheildTempBuff
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
   - hash:
       serializedVersion: 2
-      Hash: ce7220134110227c85be8cfe98bd88f3
+      Hash: 44b8eecd426aba0f57a330af922fd8da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Shade
@@ -469,16 +550,22 @@ ScriptsOnlyBuild:
     className: SwapFullSkin
   - hash:
       serializedVersion: 2
+      Hash: 27c7c684141dd5febbca204a58ffa641
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Item
+  - hash:
+      serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 5f1752ed2092162f016c19510c28a8b9
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
+      Hash: 1f5c3704bbbffb4d859577b7ed0acd9c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OverlapMap
   - hash:
       serializedVersion: 2
       Hash: f84d945e5e1ca985698660fc26e9657f
@@ -499,10 +586,16 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: bcf48e05bc913e69831324dccf2ae9d8
+      Hash: bbf2ea8fbfb00abc89e081a054d926f2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UnitManager
+  - hash:
+      serializedVersion: 2
+      Hash: 1f5c3704bbbffb4d859577b7ed0acd9c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OverlapWFC
   - hash:
       serializedVersion: 2
       Hash: 71b711096c6c32621c1d4c02310898b7
@@ -571,10 +664,16 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: dca3d991cb03e134db5fe8b80935633f
+      Hash: 9dd6af6849e28e640f44fb7ab0aa822c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GridManager
+  - hash:
+      serializedVersion: 2
+      Hash: c2665bf0fe94664e330c31a5d47e98a9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PopupWindow
   - hash:
       serializedVersion: 2
       Hash: 6939772cb3ce775a8e8d99f332534491
@@ -607,13 +706,13 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: e7f870c5cd2aef65087b386050cb1713
+      Hash: 33ceebe63a9ccb9ff3b9eb58554108b4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GrassTile
   - hash:
       serializedVersion: 2
-      Hash: fedfd26f73b045571fdea30cb203987b
+      Hash: 5d7ea09b6dd00e0c7bca15b6aaece334
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -631,7 +730,13 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: 8e6ab1478fcee6f3683f5e4786b7a8ec
+      Hash: 44b8eecd426aba0f57a330af922fd8da
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Ranger
+  - hash:
+      serializedVersion: 2
+      Hash: 68315dbcaff4a065bc7b24ffe3489f97
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WallTile
@@ -691,13 +796,19 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: ce7220134110227c85be8cfe98bd88f3
+      Hash: 44b8eecd426aba0f57a330af922fd8da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Goblin
   - hash:
       serializedVersion: 2
-      Hash: 8e6ab1478fcee6f3683f5e4786b7a8ec
+      Hash: a76c494fb36826098d125c7998c79603
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StairsDown
+  - hash:
+      serializedVersion: 2
+      Hash: 68315dbcaff4a065bc7b24ffe3489f97
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Tile
@@ -739,19 +850,25 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
+      Hash: 9463cf9660eafd216a687babd3942544
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TilePainter
+  - hash:
+      serializedVersion: 2
       Hash: 0fd6822f6177297bd0eb4d83cc7a9030
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ToggleGroup
   - hash:
       serializedVersion: 2
-      Hash: ce7220134110227c85be8cfe98bd88f3
+      Hash: 44b8eecd426aba0f57a330af922fd8da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Knight
   - hash:
       serializedVersion: 2
-      Hash: ce7220134110227c85be8cfe98bd88f3
+      Hash: 44b8eecd426aba0f57a330af922fd8da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UnitBasic

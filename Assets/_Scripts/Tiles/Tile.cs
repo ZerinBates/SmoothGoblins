@@ -28,6 +28,7 @@ public class Tile : MonoBehaviour
     //private bool attackMarked = false;
     public string TileName;
     public UnitBasic OccupiedUnit;
+    public ItemBasic OccupiedItem = null;
     public List<Tile> Neighbors { get; protected set; }
     public bool walkable => _iswalkable && OccupiedUnit == null;
     public void SetConnection(Tile tile) => Connection = tile;
@@ -185,6 +186,14 @@ public class Tile : MonoBehaviour
         }
 
     }
+    public bool setItem(ItemBasic I)
+    {
+        if (I.OccupiedTile != null) I.OccupiedTile.OccupiedItem = null;
+        I.transform.position = this.transform.position;
+        this.OccupiedItem = I;
+        I.OccupiedTile = this;
+        return true;
+    }
     public bool SetUnit(UnitBasic u)
     {
         if (walkable)
@@ -194,6 +203,10 @@ public class Tile : MonoBehaviour
             u.transform.position = this.transform.position;
             this.OccupiedUnit = u;
             u.OccupiedTile = this;
+            if (OccupiedItem != null)
+            {
+                OccupiedItem.SteppedOn(u);
+            }
     //        UnitManager.Instance.PartyLight();
             return true;
             //GridManager.Instance.PrintLight(this);

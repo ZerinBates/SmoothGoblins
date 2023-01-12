@@ -70,6 +70,7 @@
     <Compile Include="Assets\_Scripts\GridStuff\OverlapMap.cs" />
     <Compile Include="Assets\_Scripts\GridStuff\PathNode.cs" />
     <Compile Include="Assets\_Scripts\GridStuff\Pathfinding.cs" />
+    <Compile Include="Assets\_Scripts\ItemBasic.cs" />
     <Compile Include="Assets\_Scripts\Managers\CombatManager.cs" />
     <Compile Include="Assets\_Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\_Scripts\Managers\GridManager.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\_Scripts\Managers\TriggerManager.cs" />
     <Compile Include="Assets\_Scripts\Managers\UnitManager.cs" />
     <Compile Include="Assets\_Scripts\ScriptableUnits.cs" />
+    <Compile Include="Assets\_Scripts\StairsDown.cs" />
     <Compile Include="Assets\_Scripts\Tiles\GrassTile.cs" />
     <Compile Include="Assets\_Scripts\Tiles\HinderingTile.cs" />
     <Compile Include="Assets\_Scripts\Tiles\Tile.cs" />
@@ -92,6 +94,12 @@
     <Compile Include="Assets\_Scripts\Units\Hero\Ranger.cs" />
     <Compile Include="Assets\_Scripts\Units\UnitBasic.cs" />
     <Compile Include="Assets\_Scripts\menuButton.cs" />
+    <Compile Include="Assets\_Scripts\new\Buff.cs" />
+    <Compile Include="Assets\_Scripts\new\DiceCreator.cs" />
+    <Compile Include="Assets\_Scripts\new\Encounter.cs" />
+    <Compile Include="Assets\_Scripts\new\Item.cs" />
+    <Compile Include="Assets\_Scripts\new\PopupWindow.cs" />
+    <Compile Include="Assets\_Scripts\new\SheildTempBuff.cs" />
     <Compile Include="Assets\unity-wave-function-collapse\OverlapWFC.cs" />
     <Compile Include="Assets\unity-wave-function-collapse\SimpleTiledWFC.cs" />
     <Compile Include="Assets\unity-wave-function-collapse\TilePainter.cs" />

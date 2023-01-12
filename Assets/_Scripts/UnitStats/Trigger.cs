@@ -75,7 +75,7 @@ public class SwarmTrigger : Trigger
             {
                 if (triggerUnit.Faction == GetTriggerer().Faction)
                 {
-                    triggerUnit.GetStats().AttackTemp += 1;
+                    //triggerUnit.GetStats().AttackTemp += 1;
                 }
             }
         }
@@ -105,7 +105,7 @@ public class SheilderTrigger : Trigger
             {
                 if (triggerUnit.Faction == GetTriggerer().Faction)
                 {
-                    triggerUnit.GetStats().DefenceTemp += 1;
+                  //  triggerUnit.GetStats().DefenceTemp += 1;
                 }
             }
         }
@@ -148,7 +148,7 @@ public class SniperTrigger : Trigger
                                 if (GridManager.Instance.GetTileAtPosition(x + x1, y + y1).OccupiedUnit.Faction == GetTriggerer().Faction)
                                 {
 
-                                        triggerUnit.GetStats().DefenceTemp--;
+                                 //       triggerUnit.GetStats().DefenceTemp--;
                                     }
                                 }
                             }

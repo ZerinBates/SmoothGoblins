@@ -7,16 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class UnitManager : MonoBehaviour
 {
+    public int HeroCount;
+    public int EnemyCount;
     public int maxDistance = 5;
     public List<ScriptableUnits> _units;
     public static UnitManager Instance;
     private int trackerInitiative;
     public HeroBasic SelectedHero;
-    public int ActivePoint=0;
-    public int MovePoint=0;
+    public int ActivePoint = 0;
+    public int MovePoint = 0;
     public EnemiesBasic selectedEnemy;
-    public Tile selectedTile=null;
-    
+    public Tile selectedTile = null;
+
     public List<HeroBasic> Party = new List<HeroBasic>();
     public List<UnitBasic> initiative;
     public List<EnemiesBasic> Foes = new List<EnemiesBasic>();
@@ -46,7 +48,8 @@ public class UnitManager : MonoBehaviour
                     initiative.Add(enemies[bad]);
                     bad--;
                 }
-            } else if (bad >= 0)
+            }
+            else if (bad >= 0)
             {
                 initiative.Add(enemies[bad]);
                 bad--;
@@ -59,13 +62,13 @@ public class UnitManager : MonoBehaviour
         }
 
     }
-    public void StartCombat(bool surprised=false,List<EnemiesBasic> enemies = null)
+    public void StartCombat(bool surprised = false, List<EnemiesBasic> enemies = null)
     {
         if (initiative != null)
         {
             TriggerManager.Instance.setAll(initiative);
         }
-        if (enemies==null)
+        if (enemies == null)
         {
             enemies = Foes;
         }
@@ -79,7 +82,7 @@ public class UnitManager : MonoBehaviour
         {
             TriggerManager.Instance.setAll(initiative);
         }
-        if(Party.Count <= 0)
+        if (Party.Count <= 0)
         {
             GameManager.Instance.UpdateGameState(GameState.EndGame);
             return;
@@ -99,15 +102,15 @@ public class UnitManager : MonoBehaviour
         else
         {
 
-                // ActivePoint = 1;
-                MovePoint = 1;
-                SetSelectedHero((HeroBasic)initiative[trackerInitiative]);
-                TriggerManager.Instance.UpdateTrigger(TriggerEvent.TurnStart, SelectedHero);
+            // ActivePoint = 1;
+            MovePoint = 1;
+            SetSelectedHero((HeroBasic)initiative[trackerInitiative]);
+            TriggerManager.Instance.UpdateTrigger(TriggerEvent.TurnStart, SelectedHero);
             int x = SelectedHero.OccupiedTile.x;
-                int y = SelectedHero.OccupiedTile.y;
-                GridManager.Instance.MoveCam(x, y);
-                trackerInitiative++;
-                GameManager.Instance.UpdateGameState(GameState.HeroesTurn);
+            int y = SelectedHero.OccupiedTile.y;
+            GridManager.Instance.MoveCam(x, y);
+            trackerInitiative++;
+            GameManager.Instance.UpdateGameState(GameState.HeroesTurn);
             if (!GameManager.Instance.formationmoving || selectedTile == null)
             {
 
@@ -115,14 +118,15 @@ public class UnitManager : MonoBehaviour
             else
             {
                 // pathfinding initiative !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!------------------------
-               List<PathNode> temp =  GridManager.Instance.getPath(SelectedHero.OccupiedTile, selectedTile);
+                List<PathNode> temp = GridManager.Instance.getPath(SelectedHero.OccupiedTile, selectedTile);
                 //               GridManager.Instance.MoveUp(SelectedHero.OccupiedTile, selectedTile);
                 Tile basic = GridManager.Instance.GetTileAtPosition(temp[0].x, temp[0].y);
                 if (CheckPartyFormation(basic))
                 {
                     basic.SetUnit(SelectedHero);
                 }
-                if (SelectedHero.OccupiedTile == selectedTile) {
+                if (SelectedHero.OccupiedTile == selectedTile)
+                {
                     selectedTile = null;
                     //GameManager.Instance.formationmoving = false;
                     TriggerManager.Instance.UpdateTrigger(TriggerEvent.TurnEnd, SelectedHero);
@@ -131,14 +135,14 @@ public class UnitManager : MonoBehaviour
                 // GameManager.Instance.wait();
                 TriggerManager.Instance.UpdateTrigger(TriggerEvent.TurnEnd, SelectedHero);
                 StartCoroutine(SmoothMovement());
-               
+
             }
-          //  checkTriggers((UnitBasic)SelectedHero, TriggerEvent.TurnEnd);
+            //  checkTriggers((UnitBasic)SelectedHero, TriggerEvent.TurnEnd);
         }
     }
     private IEnumerator SmoothMovement()
     {
-       // Debug.Log("begin");
+        // Debug.Log("begin");
         yield return new WaitForSecondsRealtime(.05f);
         NextInitiative();
 
@@ -161,8 +165,8 @@ public class UnitManager : MonoBehaviour
     //Spawners 
     public void SpawnHeroes()
     {
-        int HeroCount = 4;
-        for(int i = 0; i < HeroCount; i++)
+        // HeroCount = 4;
+        for (int i = 0; i < HeroCount; i++)
         {
             var randomPrefab = GetRandomeUnit<UnitBasic>(Faction.Hero);
             var spawnedHero = Instantiate(randomPrefab);
@@ -176,8 +180,8 @@ public class UnitManager : MonoBehaviour
     }
     public void SpawnEnemy()
     {
-        int enemyCount = 5;
-        for (int i = 0; i < enemyCount; i++)
+        // EnemyCount = 5;
+        for (int i = 0; i < EnemyCount; i++)
         {
             var randomPrefab = GetRandomeUnit<UnitBasic>(Faction.Enemy);
             var spawnedEnemy = Instantiate(randomPrefab);
@@ -187,7 +191,7 @@ public class UnitManager : MonoBehaviour
         }
         GameManager.Instance.UpdateGameState(GameState.CombatStart);
     }
-    public void SpawnUnit(string u,int x, int y)
+    public void SpawnUnit(string u, int x, int y)
     {
         var prefab = GetUnit<UnitBasic>(u);
         var spawnedUnit = Instantiate(prefab);
@@ -197,37 +201,38 @@ public class UnitManager : MonoBehaviour
         if (spawnedUnit.Faction == Faction.Hero)
         {
             Party.Add((HeroBasic)spawnedUnit);
-        }else if (spawnedUnit.Faction == Faction.Enemy)
+        }
+        else if (spawnedUnit.Faction == Faction.Enemy)
         {
             Foes.Add((EnemiesBasic)spawnedUnit);
         }
     }
     //actions
-/*    public bool checkTriggers(UnitBasic react, TriggerEvent trigger)
-    {
-        foreach(var unit in Party)
+    /*    public bool checkTriggers(UnitBasic react, TriggerEvent trigger)
         {
-            unit.trigger(trigger,react);
-        }
-        foreach(var unit in Foes)
-        {
-            unit.trigger(trigger, react);
-        }
-        return true;
-    }*/
-    private T GetRandomeUnit<T>(Faction faction)where T : UnitBasic
+            foreach(var unit in Party)
+            {
+                unit.trigger(trigger,react);
+            }
+            foreach(var unit in Foes)
+            {
+                unit.trigger(trigger, react);
+            }
+            return true;
+        }*/
+    private T GetRandomeUnit<T>(Faction faction) where T : UnitBasic
     {
-        return (T)_units.Where(u =>u.faction == faction).OrderBy(o=>Random.value).First().UnitPrefab;
+        return (T)_units.Where(u => u.faction == faction).OrderBy(o => Random.value).First().UnitPrefab;
     }
-    private T GetUnit<T>(string unit)where T : UnitBasic
+    private T GetUnit<T>(string unit) where T : UnitBasic
     {
-        return (T)_units.Where(u=>u.name == unit).First().UnitPrefab;
+        return (T)_units.Where(u => u.name == unit).First().UnitPrefab;
     }
 
     public void PartyLight()
     {
         List<Tile> t = new List<Tile>();
-        foreach(HeroBasic c in Party)
+        foreach (HeroBasic c in Party)
         {
             if (c.OccupiedTile)
             {
@@ -249,7 +254,7 @@ public class UnitManager : MonoBehaviour
                 MovePoint--;
                 UnitManager.Instance.NextInitiative();
             }
-            
+
         }
     }
     public void SelectEnemyTurn()
@@ -264,15 +269,15 @@ public class UnitManager : MonoBehaviour
         MenuManager.Instance.ShowSelectedHero(h);
         if (h != null)
         {
-//            GridManager.Instance.PrintAttackTile(h.OccupiedTile);
+            //            GridManager.Instance.PrintAttackTile(h.OccupiedTile);
             GridManager.Instance.PrintWalkTile(h.OccupiedTile);
-            
+
         }
         else
         {
-         //   GridManager.Instance.ClearAttackTiles();
+            //   GridManager.Instance.ClearAttackTiles();
             GridManager.Instance.ClearWalkTiles();
-           // NextInitiative();
+            // NextInitiative();
         }
         PartyLight();
     }
@@ -286,9 +291,33 @@ public class UnitManager : MonoBehaviour
         {
             Foes.Remove((EnemiesBasic)unit);
         }
-        if (initiative.Contains(unit)){
+        if (initiative.Contains(unit))
+        {
             initiative.Remove(unit);
         }
 
     }
+    public void GroupDamage(List<UnitBasic> group, int damage, bool peircing = false)
+    {
+        List<UnitBasic> grouptemp = group;
+        bool finish = true;
+        int x = 0;
+        while (finish && x < 10)
+        {
+            x++;
+            finish = false;
+            foreach (UnitBasic unit in grouptemp)
+            {
+                if (!unit.TakeDamage(damage))
+                {
+                    grouptemp.Remove(unit);
+                    finish = true;
+                    break;
+                }
+            }
+
+        }
+
+    }
 }
+

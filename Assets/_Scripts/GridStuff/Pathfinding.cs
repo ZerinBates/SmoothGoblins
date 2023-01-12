@@ -41,7 +41,7 @@ public class PathPropper
                 return path ;
             }else if (tunnel)
             {
-                if (tunnelcount > GridManager.Instance.GetWidth()* GridManager.Instance.GetHeight()/2)
+                if (tunnelcount >  GridManager.Instance.GetWidth()* GridManager.Instance.GetHeight()/2 || tunnelcount ==1)
                 {
                     // p = currentPathTile;
                     onPath = false;

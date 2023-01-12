@@ -9,10 +9,12 @@ public class UnitBasic : MonoBehaviour
     public Tile OccupiedTile;
     public Faction Faction;
     public bool darkened = false;
-    protected StatBasic Stats=new StatBasic();
-    private List<Trigger> triggers=new List<Trigger>();
+    protected StatBasic Stats = new StatBasic();
+    private List<Trigger> triggers = new List<Trigger>();
+    private List<Buff> buffs = new List<Buff>();
     public string UnitName;
     public bool set = false;
+
     public Trigger getTrigger(string name)
     {
         foreach (Trigger t in triggers)
@@ -51,12 +53,20 @@ public class UnitBasic : MonoBehaviour
     }
     public void trigger(TriggerEvent ev, UnitBasic uni)
     {
-        foreach (Trigger t in triggers){
+        foreach (Buff buff in buffs)
+        {
+            if (buff.GetTrigger() == ev)
+            {
+                buff.OnUpdate(ev, uni);
+            }
+        }
+        foreach (Trigger t in triggers)
+        {
             if (triggers.Contains(t))
             {
                 if (t.getTriggerEvent() == ev)
                 {
-                    bool i =t.activate(uni);
+                    bool i = t.activate(uni);
                     if (i)
                     {
                         //string j = "yay";
@@ -68,6 +78,10 @@ public class UnitBasic : MonoBehaviour
     public StatBasic GetStats()
     {
         return Stats;
+    }
+    public int SkillCheck(stats skill)
+    {
+        return Stats.SkillCheck(skill);
     }
     public double CanHit(Tile spot, Tile enemy)
     {
@@ -117,24 +131,26 @@ public class UnitBasic : MonoBehaviour
             if (GridManager.Instance.WithinRange(temp, Stats.Range, enemy.OccupiedTile.x, enemy.OccupiedTile.y))
             {
                 TriggerManager.Instance.UpdateTrigger(TriggerEvent.Attack, this);
-                enemy.TakeDamage(Stats.GetAttack());
+                enemy.TakeDamage(Stats.BasicAttack());
                 success = true;
-//                GameManager.Instance.formationmoving = false;
+                //                GameManager.Instance.formationmoving = false;
             }
         }
         return success;
     }
 
-    public void TakeDamage(int dmg, string type = "basic")
+    public bool TakeDamage(int dmg, string type = "basic")
     {
         TriggerManager.Instance.UpdateTrigger(TriggerEvent.Damaged, this);
-        Stats.TakeDamage(dmg, type); 
+        Stats.TakeDamage(dmg, type);
         if (Stats.Hp <= 0)
         {
             UnitManager.Instance.Death(this);
             gameObject.SetActive(false);
             Destroy(this);
+            return false;
         }
+        return true;
     }
     public void Light()
     {

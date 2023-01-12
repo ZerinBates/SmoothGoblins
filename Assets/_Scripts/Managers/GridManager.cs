@@ -6,9 +6,10 @@ using System;
 
 public class GridManager : MonoBehaviour
 {
-    public List<MapEvents>events= new List<MapEvents>();
+    public List<MapEvents> events = new List<MapEvents>();
     public static GridManager Instance;
     public bool start = true;
+    [SerializeField] private ItemBasic test;
     [SerializeField] private int _width;
     [SerializeField] private int _height;
     [SerializeField] public Tile _grassTile, _mountainTile,_hinderingTile;
@@ -76,7 +77,7 @@ public class GridManager : MonoBehaviour
                    // GridManager.Instance._tiles[new Vector2(x, y)] = spawnedTile;
                 }
             }
-
+            
         }
         else
         {
@@ -86,12 +87,13 @@ public class GridManager : MonoBehaviour
                 {
                     Tile _chosenTile;
                     if (x != 50 && y != 50)
+//if (true)
                     {
-                        _chosenTile = UnityEngine.Random.Range(0, 6) == 3 ? _mountainTile : _mountainTile;
+                        _chosenTile = UnityEngine.Random.Range(0, 6) == 3 ? _grassTile : _grassTile;
                     }
                     else
                     {
-                        _chosenTile = _grassTile;
+                        _chosenTile = _mountainTile;
                     }
 
                     var spawnedTile = Instantiate(_chosenTile, new Vector3(x, y), Quaternion.identity);
@@ -104,38 +106,48 @@ public class GridManager : MonoBehaviour
                 }
 
             }
+
             var spawnedTile1 = Instantiate(GridManager.Instance._grassTile, new Vector3(0, 0), Quaternion.identity);
             SetTile(0, 0, spawnedTile1);
         }
         //set events
-        MapEvents m = new GoblinNook();
-        events.Add(m);
-        for (int k = 0; k < 2; k++)
-        {
-           MapEvents chosen =  events.OrderBy(o => UnityEngine.Random.value).First();
-            int x = UnityEngine.Random.Range(5, _width);
-            int y = UnityEngine.Random.Range(5, _height);
-            while (!chosen.requirements(x, y))
-            {
-                 x = UnityEngine.Random.Range(5, _width);
-                 y = UnityEngine.Random.Range(5, _height);
-            }
+       MapEvents m = new GoblinNook();
+       events.Add(m);
+       for (int k = 0; k < 0; k++)
+     {
+        MapEvents chosen =  events.OrderBy(o => UnityEngine.Random.value).First();
+         int x = UnityEngine.Random.Range(5, _width);
+         int y = UnityEngine.Random.Range(5, _height);
+         while (!chosen.requirements(x, y))
+         {
+              x = UnityEngine.Random.Range(5, _width);
+              y = UnityEngine.Random.Range(5, _height);
+         }
 
-            chosen.startSeed(x, y);
-        }
-        
+         chosen.startSeed(x, y);
+     }
+        //get cached neighbors
+
+        updatePaths();
+        PathPropper p = new PathPropper();
+        //tunnel
+        p.FindPath(GetTileAtPosition(0, 0).Pnode, GetTileAtPosition(_width - 1, _height - 1).Pnode,true);
+        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
+        //stairsDown s = new stairsDown();
+        GetTileAtPosition(_width - 1, _height - 1).setItem(test);
+        updatePaths();
+        GameManager.Instance.UpdateGameState(GameState.SpawnHeroes);
+    }
+    public void updatePaths()
+    {
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
                 GetTileAtPosition(x, y).Pnode.CacheNeighbors();
-                        _tiles[new Vector2(x, y)].Darken();
+                _tiles[new Vector2(x, y)].Darken();
             }
         }
-        PathPropper p = new PathPropper();
-        p.FindPath(GetTileAtPosition(0, 0).Pnode, GetTileAtPosition(_width - 1, _height - 1).Pnode,true);
-        _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
-        GameManager.Instance.UpdateGameState(GameState.SpawnHeroes);
     }
     public void MoveCam(int x, int y)
     {
