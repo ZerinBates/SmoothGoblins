@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{644158F3-F239-86B3-4AD4-1F98647292FC}</ProjectGuid>
+    <ProjectGuid>{DC4CA1DE-2D82-43DA-7037-2D51D01AE5C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -70,7 +70,6 @@
     <Compile Include="Assets\_Scripts\GridStuff\OverlapMap.cs" />
     <Compile Include="Assets\_Scripts\GridStuff\PathNode.cs" />
     <Compile Include="Assets\_Scripts\GridStuff\Pathfinding.cs" />
-    <Compile Include="Assets\_Scripts\ItemBasic.cs" />
     <Compile Include="Assets\_Scripts\Managers\CombatManager.cs" />
     <Compile Include="Assets\_Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\_Scripts\Managers\GridManager.cs" />
@@ -95,8 +94,13 @@
     <Compile Include="Assets\_Scripts\Units\UnitBasic.cs" />
     <Compile Include="Assets\_Scripts\menuButton.cs" />
     <Compile Include="Assets\_Scripts\new\Buff.cs" />
+    <Compile Include="Assets\_Scripts\new\BuffonEncounter.cs" />
     <Compile Include="Assets\_Scripts\new\DiceCreator.cs" />
+    <Compile Include="Assets\_Scripts\new\DiceRoller.cs" />
     <Compile Include="Assets\_Scripts\new\Encounter.cs" />
+    <Compile Include="Assets\_Scripts\new\EncounterPopUp.cs" />
+    <Compile Include="Assets\_Scripts\new\FightDisplay.cs" />
+    <Compile Include="Assets\_Scripts\new\HideButton.cs" />
     <Compile Include="Assets\_Scripts\new\Item.cs" />
     <Compile Include="Assets\_Scripts\new\PopupWindow.cs" />
     <Compile Include="Assets\_Scripts\new\SheildTempBuff.cs" />
@@ -639,98 +643,98 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.SpriteShape.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Path.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="PsdPlugin">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/PsdPlugin.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Psdimporter.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Common.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.SpriteShape.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Common.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.2D.Animation.Samples.Dependency.csproj">
-      <Project>{8FFA2334-FC0F-A5C7-8534-286E76F6372B}</Project>
+      <Project>{9637F22B-135C-AFE2-B493-245194D9900F}</Project>
       <Name>Unity.2D.Animation.Samples.Dependency</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Animation.Samples.Runtime.csproj">
-      <Project>{C2AF0AEB-23F5-A374-4EC9-7E449BD7F72E}</Project>
+      <Project>{28FBCC03-06F5-69E0-5984-F818231EEEC2}</Project>
       <Name>Unity.2D.Animation.Samples.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Animation.Samples.Editor.csproj">
-      <Project>{8ABC2F26-A8E1-50A1-7277-77E2B27543D1}</Project>
+      <Project>{92C15BFB-9745-3A96-0475-88E7310DE2CB}</Project>
       <Name>Unity.2D.Animation.Samples.Editor</Name>
     </ProjectReference>
   </ItemGroup>

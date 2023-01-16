@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public bool isPaused = false;
     public int count = 0;
     public static GameManager Instance;
     public GameState State;
@@ -77,6 +78,25 @@ public class GameManager : MonoBehaviour
         Debug.Log("begin");
         yield return new WaitForSecondsRealtime(10);
 
+    }
+
+
+    public void PauseGame()
+    {
+        if (!isPaused)
+        {
+            isPaused = true;
+            Time.timeScale = 0;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (isPaused)
+        {
+            isPaused = false;
+            Time.timeScale = 1;
+        }
     }
 
 }

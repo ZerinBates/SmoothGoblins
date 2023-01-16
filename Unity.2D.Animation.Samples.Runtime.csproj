@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C2AF0AEB-23F5-A374-4EC9-7E449BD7F72E}</ProjectGuid>
+    <ProjectGuid>{28FBCC03-06F5-69E0-5984-F818231EEEC2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.2D.Animation.Samples.Runtime</AssemblyName>
@@ -609,13 +609,13 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

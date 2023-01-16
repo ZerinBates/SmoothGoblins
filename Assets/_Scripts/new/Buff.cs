@@ -4,15 +4,19 @@
 public abstract class Buff : MonoBehaviour
 {
     // A flag to track whether the buff has expired
-    protected TriggerEvent trigger {get;}
+    protected TriggerEvent trigger { get; set; }
     private bool hasExpired;
     int rounds = 1;
+    public void SetRounds(int i)
+    {
+        rounds = i;
+    }
     public TriggerEvent GetTrigger()
     {
         return trigger;
     }
     // Called when the buff is applied
-    public virtual void OnApply()
+    public virtual void OnApply(UnitBasic u)
     {
         // Reset the expired flag
         hasExpired = false;

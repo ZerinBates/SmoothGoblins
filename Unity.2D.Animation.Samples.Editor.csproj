@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{8ABC2F26-A8E1-50A1-7277-77E2B27543D1}</ProjectGuid>
+    <ProjectGuid>{92C15BFB-9745-3A96-0475-88E7310DE2CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.2D.Animation.Samples.Editor</AssemblyName>
@@ -262,7 +262,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -619,27 +619,27 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/Unity.2D.Animation.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/Users/zerin/OneDrive/Documents/Unity/smooth goblins/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>C:/Users/zerin/OneDrive/Documents/GitHub/SmoothGoblins/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.2D.Animation.Samples.Runtime.csproj">
-      <Project>{C2AF0AEB-23F5-A374-4EC9-7E449BD7F72E}</Project>
+      <Project>{28FBCC03-06F5-69E0-5984-F818231EEEC2}</Project>
       <Name>Unity.2D.Animation.Samples.Runtime</Name>
     </ProjectReference>
   </ItemGroup>

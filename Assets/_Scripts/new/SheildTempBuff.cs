@@ -19,9 +19,9 @@ public class SheildTempBuff : Buff
     }
 
     // Called when the buff is applied
-    public override void OnApply()
+    public override void OnApply(UnitBasic u)
     {
-        base.OnApply();
+        base.OnApply(u);
 
         // Apply the bonus durability to the unit
         unit.GetStats().AddBuff(stats.durability, bonusDurability);

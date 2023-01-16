@@ -12,6 +12,7 @@ public class EnemiesBasic : UnitBasic
         if (!set)
         {
             Stats = new Pawn();
+            Stats.faction = Faction.Enemy;
         }
             foreach (Trigger t in Stats.genTrigger)
             {

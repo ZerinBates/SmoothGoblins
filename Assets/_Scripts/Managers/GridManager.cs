@@ -7,9 +7,10 @@ using System;
 public class GridManager : MonoBehaviour
 {
     public List<MapEvents> events = new List<MapEvents>();
+    public Item finish;
     public static GridManager Instance;
     public bool start = true;
-    [SerializeField] private ItemBasic test;
+   // [SerializeField] private ItemBasic test;
     [SerializeField] private int _width;
     [SerializeField] private int _height;
     [SerializeField] public Tile _grassTile, _mountainTile,_hinderingTile;
@@ -127,14 +128,18 @@ public class GridManager : MonoBehaviour
          chosen.startSeed(x, y);
      }
         //get cached neighbors
-
+        Tile fin = GetTileAtPosition(_width - 1, _height - 1);
+        if (fin.setItem(finish))
+        {
+            Debug.Log(finish);
+        }
         updatePaths();
         PathPropper p = new PathPropper();
         //tunnel
         p.FindPath(GetTileAtPosition(0, 0).Pnode, GetTileAtPosition(_width - 1, _height - 1).Pnode,true);
         _cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
         //stairsDown s = new stairsDown();
-        GetTileAtPosition(_width - 1, _height - 1).setItem(test);
+       // GetTileAtPosition(_width - 1, _height - 1).setItem(test);
         updatePaths();
         GameManager.Instance.UpdateGameState(GameState.SpawnHeroes);
     }

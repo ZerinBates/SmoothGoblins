@@ -154,6 +154,7 @@ public abstract class Model
 
 	public bool Run(int seed, int limit)
 	{
+		
 		if (wave == null) Init();
 
 		if (!this.init) {

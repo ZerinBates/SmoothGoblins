@@ -14,7 +14,15 @@ public class UnitBasic : MonoBehaviour
     private List<Buff> buffs = new List<Buff>();
     public string UnitName;
     public bool set = false;
+    public void AddBuff(Buff daBuff)
+    {
+        if (!buffs.Contains(daBuff))
+        {
+            daBuff.OnApply(this);
+            buffs.Add(daBuff);
 
+        }
+    }
     public Trigger getTrigger(string name)
     {
         foreach (Trigger t in triggers)
@@ -121,9 +129,41 @@ public class UnitBasic : MonoBehaviour
         }
         return false;
     }
+    private void displayAttack(UnitBasic us,UnitBasic them)
+    {
+        List<int> rolls = MenuManager.Instance.LastHeroRolls;
+        int heroTotal = 0;
+        int enemyTotal = 0;
+        foreach(int roll in rolls) { heroTotal += roll; };
+        rolls = MenuManager.Instance.LastEnemeyRolls;
+        foreach (int roll in rolls) { enemyTotal += roll; };
+        string total;
+
+
+        if (Faction == Faction.Hero)
+        {
+            total = (heroTotal - enemyTotal).ToString() + " Damage";
+            if (heroTotal - enemyTotal < 0)
+            {
+                total = "0 Damage";
+            }
+            
+            MenuManager.Instance.showFightDisplay(this, them, total, "red");
+        }
+        else
+        {
+            total = ( enemyTotal- heroTotal).ToString() + " Damage";
+            if (enemyTotal - heroTotal < 0)
+            {
+                total = "0 Damage";
+            }
+            MenuManager.Instance.showFightDisplay(them, this, total, "blue");
+        }
+    } 
     public bool Attack(UnitBasic enemy)
     {
         bool success = false;
+
         List<Tile> temp = new List<Tile>() { this.OccupiedTile };
         if (Threatens(OccupiedTile, enemy.OccupiedTile))
         {
@@ -133,6 +173,8 @@ public class UnitBasic : MonoBehaviour
                 TriggerManager.Instance.UpdateTrigger(TriggerEvent.Attack, this);
                 enemy.TakeDamage(Stats.BasicAttack());
                 success = true;
+                displayAttack(this, enemy);
+                
                 //                GameManager.Instance.formationmoving = false;
             }
         }

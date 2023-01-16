@@ -8,7 +8,8 @@ public class Ranger : HeroBasic
     void Start()
     {
         Stats = new Archer();
-       // Darken();
+        Stats.faction = Faction.Hero;
+        // Darken();
         set = true;
         foreach (Trigger t in Stats.genTrigger)
         {

@@ -9,6 +9,7 @@ public class Knight : HeroBasic
         if (!set)
         {
             Stats = new King();
+            Stats.faction = Faction.Hero;
             set = true;
             foreach (Trigger t in Stats.genTrigger)
             {

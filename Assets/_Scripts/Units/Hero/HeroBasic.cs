@@ -9,6 +9,7 @@ public class HeroBasic : UnitBasic
         if (!set)
         {
             Stats = new King();
+            Stats.faction = Faction.Hero;
             set = true;
             foreach (Trigger t in Stats.genTrigger)
             {

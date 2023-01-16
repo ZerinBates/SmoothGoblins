@@ -28,7 +28,7 @@ public class Tile : MonoBehaviour
     //private bool attackMarked = false;
     public string TileName;
     public UnitBasic OccupiedUnit;
-    public ItemBasic OccupiedItem = null;
+    public Item OccupiedItem = null;
     public List<Tile> Neighbors { get; protected set; }
     public bool walkable => _iswalkable && OccupiedUnit == null;
     public void SetConnection(Tile tile) => Connection = tile;
@@ -112,81 +112,85 @@ public class Tile : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        //select hero
-        if (GameManager.Instance.State != GameState.HeroesTurn) return;
-        if (OccupiedUnit != null)
+        if (!GameManager.Instance.isPaused)
         {
-            //after selecting hero 
-            if (OccupiedUnit.Faction == Faction.Hero)
+            //select hero
+            if (GameManager.Instance.State != GameState.HeroesTurn) return;
+            if (OccupiedUnit != null)
             {
-                //   UnitManager.Instance.SetSelectedHero((HeroBasic)OccupiedUnit);
-               // GridManager.Instance.PrintAttackTile(this);
-
-            }
-            else
-            {
-                if (UnitManager.Instance.SelectedHero != null)
+                //after selecting hero 
+                if (OccupiedUnit.Faction == Faction.Hero)
                 {
-                    var enemy = (UnitBasic)OccupiedUnit;
-                    if(UnitManager.Instance.SelectedHero.CanHit(UnitManager.Instance.SelectedHero.OccupiedTile, this)== 100000)
-                    {
+                    //   UnitManager.Instance.SetSelectedHero((HeroBasic)OccupiedUnit);
+                    // GridManager.Instance.PrintAttackTile(this);
 
-                        //if (GridManager.Instance.MoveUp(UnitManager.Instance.SelectedHero.OccupiedTile, this)&& UnitManager.Instance.MovePoint > 0)
-                        //{
-                        //    UnitManager.Instance.MovePoint--;
-
-                        //}
-
-                    }
-
-                    UnitManager.Instance.AttackSelect(enemy);
-                    //  Destroy(enemy.gameObject);
-                    if (UnitManager.Instance.MovePoint <= 0&& UnitManager.Instance.ActivePoint <= 0){
-                        UnitManager.Instance.SetSelectedHero(null);
-                    }
-                    //UnitManager.Instance.NextInitiative();
                 }
-            }
-        }else
-        //blank tile
-        {
-            //move
-            if (UnitManager.Instance.SelectedHero != null)
-            {
-                if (walkMarked && UnitManager.Instance.MovePoint > 0)
+                else
                 {
-                    if (SetUnit(UnitManager.Instance.SelectedHero))
+                    if (UnitManager.Instance.SelectedHero != null)
                     {
-                        if (UnitManager.Instance.ActivePoint <= 0)
+                        var enemy = (UnitBasic)OccupiedUnit;
+                        if (UnitManager.Instance.SelectedHero.CanHit(UnitManager.Instance.SelectedHero.OccupiedTile, this) == 100000)
+                        {
+
+                            //if (GridManager.Instance.MoveUp(UnitManager.Instance.SelectedHero.OccupiedTile, this)&& UnitManager.Instance.MovePoint > 0)
+                            //{
+                            //    UnitManager.Instance.MovePoint--;
+
+                            //}
+
+                        }
+
+                        UnitManager.Instance.AttackSelect(enemy);
+                        //  Destroy(enemy.gameObject);
+                        if (UnitManager.Instance.MovePoint <= 0 && UnitManager.Instance.ActivePoint <= 0)
                         {
                             UnitManager.Instance.SetSelectedHero(null);
                         }
-                        UnitManager.Instance.MovePoint--;
-                        UnitManager.Instance.NextInitiative();
+                        //UnitManager.Instance.NextInitiative();
+                    }
+                }
+            }
+            else
+            //blank tile
+            {
+                //move
+                if (UnitManager.Instance.SelectedHero != null)
+                {
+                    if (walkMarked && UnitManager.Instance.MovePoint > 0)
+                    {
+                        if (SetUnit(UnitManager.Instance.SelectedHero))
+                        {
+                            if (UnitManager.Instance.ActivePoint <= 0)
+                            {
+                                UnitManager.Instance.SetSelectedHero(null);
+                            }
+                            UnitManager.Instance.MovePoint--;
+                            UnitManager.Instance.NextInitiative();
+                        }
+                    }
+                    else
+                    {
+                        if (GameManager.Instance.formationmoving)
+                        {
+                            if (this.walkable)
+                            {
+                                UnitManager.Instance.selectedTile = this;
+                                UnitManager.Instance.NextInitiative();
+                            }
+                        }
+                        GridManager.Instance.MoveCam(x, y);
                     }
                 }
                 else
                 {
-                    if (GameManager.Instance.formationmoving)
-                    {
-                        if (this.walkable)
-                        {
-                            UnitManager.Instance.selectedTile = this;
-                            UnitManager.Instance.NextInitiative();
-                        }
-                    }
                     GridManager.Instance.MoveCam(x, y);
                 }
-            }
-            else
-            {
-                GridManager.Instance.MoveCam(x, y);
-            }
 
+            }
         }
-
     }
-    public bool setItem(ItemBasic I)
+    public bool setItem(Item I)
     {
         if (I.OccupiedTile != null) I.OccupiedTile.OccupiedItem = null;
         I.transform.position = this.transform.position;
@@ -203,10 +207,6 @@ public class Tile : MonoBehaviour
             u.transform.position = this.transform.position;
             this.OccupiedUnit = u;
             u.OccupiedTile = this;
-            if (OccupiedItem != null)
-            {
-                OccupiedItem.SteppedOn(u);
-            }
     //        UnitManager.Instance.PartyLight();
             return true;
             //GridManager.Instance.PrintLight(this);

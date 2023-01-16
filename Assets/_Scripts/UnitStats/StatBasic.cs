@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StatBasic
 {
+    public Faction faction=Faction.Enemy;
     public int Strength { get; set; } = 1;
     public int Speed { get; set; } = 1;
     public int Durability { get; set; } = 1;
@@ -65,14 +66,29 @@ public class StatBasic
                 buffValue = Buffs.ContainsKey(stat) ? Buffs[stat] : 0;
                 break;
         }
-        for (int i = 0; i < statValue + buffValue; i++)
+        int totalValue = statValue + buffValue;
+        if (statValue+buffValue < 1)
         {
-            total += Random.Range(1, 6);
+            totalValue = 1;
+        }
+        List<int> rolls = new List<int>();
+        for (int i = 0; i < totalValue; i++)
+        {
+            int r = Random.Range(1, 6);
+            rolls.Add(r);
+            total += r;
+        }
+        if(faction == Faction.Hero)
+        {
+            MenuManager.Instance.LastHeroRolls = rolls;
+        }
+        if(faction == Faction.Enemy)
+        {
+            MenuManager.Instance.LastEnemeyRolls = rolls;
         }
         return total;
     }
 
-    //OLD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public List<Trigger> genTrigger { get; set; } = new List<Trigger>();
     public List<AttackStyle> AttackType = new List<AttackStyle>() { AttackStyle.Bishop };
     public int Hp { get; set; } = 8;
@@ -106,11 +122,52 @@ public class StatBasic
         Hp -= total;
         return total;
     }
-    public int GetAttack(stats stat = stats.strength)
+    public int getStat(stats stat)
     {
-        int total = SkillCheck(stat);
+        int statValue = 0;
+        switch (stat)
+        {
+               
+            case stats.strength:
+                statValue = Strength;
+                
+                break;
+            case stats.speed:
+                statValue = Speed;
+                
+                break;
+            case stats.durability:
+                statValue = Durability;
+                
+                break;
+            case stats.knowledge:
+                statValue = Knowledge;
+                
+                break;
+            case stats.heart:
+                statValue = Heart;
+               
+                break;
+            case stats.keen:
+                statValue = Keen;
+                
+                break;
+        }
+        return statValue;
+    }
+    public int GetAttack()
+    {
+        int total = SkillCheck(Attack);
         ClearBuff(Attack);
         return total;
+    }
+    public int GetAttackStat()
+    {
+        return getStat(Attack);
+    }
+    public int GetTempAttackStat()
+    {
+        return Buffs.ContainsKey(Attack) ? Buffs[Attack] : 0;
     }
 }
 public enum stats
@@ -166,6 +223,7 @@ public class King : StatBasic
         Hp = 20;
         Range = 1;
         Speed = 3;
+        Strength = 2;
         //Attack = 2;
         vision = 6;
         //    Defence = 1;

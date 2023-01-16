@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
+    public List<int> LastHeroRolls;
+    public List<int> LastEnemeyRolls;
     public static MenuManager Instance;
-    [SerializeField] private GameObject _SelectedHeroMenu, _TileObject, _TileUnitObject, EndTurnButton, _Popup;
+    [SerializeField] private GameObject _SelectedHeroMenu, _TileObject, _TileUnitObject, EndTurnButton, _Popup,_FightDisplay;
     private void Awake()
     {
         Instance = this;
@@ -21,6 +23,13 @@ public class MenuManager : MonoBehaviour
         {
             _Popup.SetActive(false);
         }
+    }
+    public void showFightDisplay(UnitBasic daAlly,UnitBasic daEnemy,string total,string color)
+    {
+        _FightDisplay.SetActive(true);
+        _FightDisplay.GetComponent<FightDisplay>().display(daAlly, LastHeroRolls, daEnemy, LastEnemeyRolls, total, color);
+        GameManager.Instance.PauseGame();
+
     }
     public void ShowTileInfo(Tile tile)
     {
@@ -49,6 +58,9 @@ public class MenuManager : MonoBehaviour
             _SelectedHeroMenu.SetActive(false);
             return;
         }
+        DiceCreator dice =_SelectedHeroMenu.transform.Find("DiceDisplay").GetComponent<DiceCreator>();
+        dice.Clear();
+        dice.CreateDice(h.GetStats().GetAttackStat(), h.GetStats().GetTempAttackStat());
       //  _SelectedHeroMenu.GetComponent<DiceCreator>().CreateDice(2);
         // _SelectedHeroMenu.GetComponentInChildren<Text>().text=h.UnitName + ": " + h.GetStats().Hp+"\n m:"+UnitManager.Instance.MovePoint+ " p:" + UnitManager.Instance.ActivePoint;
         _SelectedHeroMenu.GetComponentInChildren<Text>().text = h.UnitName + ": HP " + h.GetStats().Hp + "\n m:" + UnitManager.Instance.MovePoint + " p:" + UnitManager.Instance.ActivePoint +

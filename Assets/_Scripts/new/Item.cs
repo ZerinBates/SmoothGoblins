@@ -7,14 +7,14 @@ public class Item : MonoBehaviour
     public Tile OccupiedTile;
     bool end = true;
     // The range to check for occupied units
-    public int Range = 5;
-    public void Activate()
+    public int Range = 1;
+    public virtual void  Activate()
     {
         if (encounter != null)
         {
             encounter.Activate();
         }
-        Debug.Log("yay");
+       // Debug.Log("yay");
     }
 
     // Check if any of the tiles within the specified range have an occupied unit

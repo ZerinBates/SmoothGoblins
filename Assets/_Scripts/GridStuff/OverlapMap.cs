@@ -138,11 +138,32 @@ class OverlapMap : MonoBehaviour
 
     public void Run()
     {
-        if (model == null) { return; }
-        if (undrawn == false) { return; }
+        if (model == null) {
+            return; 
+        }
+        if (undrawn == false) {
+            return;
+        }
         if (model.Run(seed, iterations))
         {
             Draw();
+        }
+        else
+        {
+            int x = 0;
+            Generate();
+            bool thing = false;
+            while (x < 100&&!thing)
+            {
+                Generate();
+                x++;
+
+                if (model.Run(seed, iterations))
+                {
+                    thing = true;
+                    Draw();
+                }
+            }
         }
     }
 
@@ -153,7 +174,7 @@ class OverlapMap : MonoBehaviour
     public Pathfinding board;
 
 
-    public void Draw()
+    public bool Draw()
     {
         for (int y = 0; y < depth; y++)
         {
@@ -185,6 +206,7 @@ class OverlapMap : MonoBehaviour
                 //  }
             }
         }
+        return true;
     }
 
 }

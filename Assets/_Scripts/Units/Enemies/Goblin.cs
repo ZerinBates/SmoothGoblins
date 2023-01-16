@@ -7,6 +7,7 @@ public class Goblin : EnemiesBasic
     private void Start()
     {
         Stats = new Pawn();
+        Stats.faction = Faction.Enemy;
         Darken();
         UnitName = "Goblin";
         foreach (Trigger t in Stats.genTrigger)
