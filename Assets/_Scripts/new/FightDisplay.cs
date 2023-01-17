@@ -45,7 +45,7 @@ public class FightDisplay : MonoBehaviour
     }
     public void SetSprites(Sprite ally, Sprite enemy)
     {
-        Debug.Log(ally);
+ //       Debug.Log(ally);
         allySprite.sprite = ally;
         enemySprite.sprite = enemy;
     }

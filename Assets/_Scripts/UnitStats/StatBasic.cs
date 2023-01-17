@@ -69,7 +69,7 @@ public class StatBasic
         int totalValue = statValue + buffValue;
         if (statValue+buffValue < 1)
         {
-            totalValue = 1;
+            totalValue = 0;
         }
         List<int> rolls = new List<int>();
         for (int i = 0; i < totalValue; i++)
@@ -168,6 +168,10 @@ public class StatBasic
     public int GetTempAttackStat()
     {
         return Buffs.ContainsKey(Attack) ? Buffs[Attack] : 0;
+    }
+    public int GetTempStat(stats s)
+    {
+        return Buffs.ContainsKey(s) ? Buffs[s] : 0;
     }
 }
 public enum stats

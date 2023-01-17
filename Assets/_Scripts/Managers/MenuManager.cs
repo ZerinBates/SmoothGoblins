@@ -44,6 +44,15 @@ public class MenuManager : MonoBehaviour
         _TileObject.SetActive(true);
         if (tile.OccupiedUnit)
         {
+          //  DiceCreator dice = _TileUnitObject.transform.Find("DiceDisplay").GetComponent<DiceCreator>();
+           // dice.Clear();
+            UnitBasic u = tile.OccupiedUnit;
+            DiceCreator dice = _TileUnitObject.transform.Find("ADiceDisplay").GetComponent<DiceCreator>();
+            dice.Clear();
+            dice.CreateDice(u.GetStats().GetAttackStat(), u.GetStats().GetTempAttackStat());
+            dice = _TileUnitObject.transform.Find("DDiceDisplay").GetComponent<DiceCreator>();
+            dice.Clear();
+            dice.CreateDice(u.GetStats().Durability, u.GetStats().GetTempStat(stats.durability));
             _TileUnitObject.GetComponentInChildren<Text>().text = tile.OccupiedUnit.UnitName + ": " + tile.OccupiedUnit.GetStats().Hp;
             _TileUnitObject.SetActive(true);
 
@@ -58,10 +67,13 @@ public class MenuManager : MonoBehaviour
             _SelectedHeroMenu.SetActive(false);
             return;
         }
-        DiceCreator dice =_SelectedHeroMenu.transform.Find("DiceDisplay").GetComponent<DiceCreator>();
+        DiceCreator dice =_SelectedHeroMenu.transform.Find("ADiceDisplay").GetComponent<DiceCreator>();
         dice.Clear();
         dice.CreateDice(h.GetStats().GetAttackStat(), h.GetStats().GetTempAttackStat());
-      //  _SelectedHeroMenu.GetComponent<DiceCreator>().CreateDice(2);
+        dice = _SelectedHeroMenu.transform.Find("DDiceDisplay").GetComponent<DiceCreator>();
+        dice.Clear();
+        dice.CreateDice(h.GetStats().Durability, h.GetStats().GetTempStat(stats.durability));
+        //  _SelectedHeroMenu.GetComponent<DiceCreator>().CreateDice(2);
         // _SelectedHeroMenu.GetComponentInChildren<Text>().text=h.UnitName + ": " + h.GetStats().Hp+"\n m:"+UnitManager.Instance.MovePoint+ " p:" + UnitManager.Instance.ActivePoint;
         _SelectedHeroMenu.GetComponentInChildren<Text>().text = h.UnitName + ": HP " + h.GetStats().Hp + "\n m:" + UnitManager.Instance.MovePoint + " p:" + UnitManager.Instance.ActivePoint +
             "\n" + "Def " + h.GetStats().Durability + "\n" + "Atk " + h.GetStats().Attack;

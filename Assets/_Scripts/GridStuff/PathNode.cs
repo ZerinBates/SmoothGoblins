@@ -39,14 +39,18 @@ public class PathNode
     }
     public float GetDistance(PathNode other)
     {
-        var dist = new Vector2Int(Mathf.Abs((int)x - (int)other.x), Mathf.Abs((int)y - (int)other.y));
+        if (other != null)
+        {
+            var dist = new Vector2Int(Mathf.Abs((int)x - (int)other.x), Mathf.Abs((int)y - (int)other.y));
 
-        var lowest = Mathf.Min(dist.x, dist.y);
-        var highest = Mathf.Max(dist.x, dist.y);
+            var lowest = Mathf.Min(dist.x, dist.y);
+            var highest = Mathf.Max(dist.x, dist.y);
 
-        var horizontalMovesRequired = highest - lowest;
+            var horizontalMovesRequired = highest - lowest;
 
-        return lowest * 14 + horizontalMovesRequired * 10;
+            return lowest * 14 + horizontalMovesRequired * 10;
+        }
+        return 100000;
     }
     public PathNode(int X,int Y,bool walkable=true)
     {

@@ -16,4 +16,11 @@ public class HinderingTile : Tile
         Pnode = new PathNode(x, y, walkable);
         Pnode.weight = 2;
     }
+    public override bool SetUnit(UnitBasic u)
+    {
+        bool temp = base.SetUnit(u);
+        BuffDurabilitySpot b = new BuffDurabilitySpot(u, 1);
+        u.AddBuff(b);
+        return temp;
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public abstract class Tile : MonoBehaviour
 {
     [SerializeField] protected Color _baseColor;
     [SerializeField] protected SpriteRenderer _renderer;
@@ -192,13 +192,17 @@ public class Tile : MonoBehaviour
     }
     public bool setItem(Item I)
     {
+
+       // I.gameObject.layer = LayerMask.NameToLayer();
         if (I.OccupiedTile != null) I.OccupiedTile.OccupiedItem = null;
         I.transform.position = this.transform.position;
         this.OccupiedItem = I;
         I.OccupiedTile = this;
+        SpriteRenderer spriteRenderer = I.gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = 1;
         return true;
     }
-    public bool SetUnit(UnitBasic u)
+    public virtual bool SetUnit(UnitBasic u)
     {
         if (walkable)
         {
@@ -207,8 +211,10 @@ public class Tile : MonoBehaviour
             u.transform.position = this.transform.position;
             this.OccupiedUnit = u;
             u.OccupiedTile = this;
-    //        UnitManager.Instance.PartyLight();
+            TriggerManager.Instance.UpdateTrigger(TriggerEvent.Move, u);
+            //        UnitManager.Instance.PartyLight();
             return true;
+            
             //GridManager.Instance.PrintLight(this);
         }
         return false;

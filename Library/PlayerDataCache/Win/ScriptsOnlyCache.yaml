@@ -12,7 +12,8 @@ ScriptsOnlyBuild:
     - GridManager
     - HideButton
     - HinderingTile
-    - Item
+    - ItemAreaBuff
+    - ItemEncounter
     - Knight
     - MenuManager
     - OverlapMap
@@ -69,15 +70,15 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11274}
+      Script: {instanceID: 11272}
     - Class: 114
       Script: {instanceID: 11572}
     - Class: 114
       Script: {instanceID: 12302}
     - Class: 114
-      Script: {instanceID: 13816}
+      Script: {instanceID: 13822}
     - Class: 114
-      Script: {instanceID: 14450}
+      Script: {instanceID: 14456}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -116,9 +117,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11246}
     - Class: 114
-      Script: {instanceID: 11268}
+      Script: {instanceID: 11266}
     - Class: 114
-      Script: {instanceID: 11274}
+      Script: {instanceID: 11272}
+    - Class: 114
+      Script: {instanceID: 11348}
     - Class: 114
       Script: {instanceID: 11444}
     - Class: 114
@@ -126,7 +129,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11626}
     - Class: 114
-      Script: {instanceID: 11744}
+      Script: {instanceID: 11746}
     - Class: 114
       Script: {instanceID: 12302}
     - Class: 114
@@ -136,51 +139,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12830}
     - Class: 114
-      Script: {instanceID: 12936}
+      Script: {instanceID: 12888}
     - Class: 114
-      Script: {instanceID: 12970}
+      Script: {instanceID: 12936}
     - Class: 114
       Script: {instanceID: 13020}
     - Class: 114
-      Script: {instanceID: 13108}
+      Script: {instanceID: 13092}
     - Class: 114
-      Script: {instanceID: 13176}
+      Script: {instanceID: 13110}
     - Class: 114
-      Script: {instanceID: 13256}
+      Script: {instanceID: 13178}
     - Class: 114
-      Script: {instanceID: 13564}
+      Script: {instanceID: 13258}
     - Class: 114
-      Script: {instanceID: 13706}
+      Script: {instanceID: 13260}
     - Class: 114
-      Script: {instanceID: 13716}
+      Script: {instanceID: 13568}
     - Class: 114
-      Script: {instanceID: 13816}
+      Script: {instanceID: 13658}
     - Class: 114
-      Script: {instanceID: 13872}
+      Script: {instanceID: 13712}
     - Class: 114
-      Script: {instanceID: 13886}
+      Script: {instanceID: 13722}
     - Class: 114
-      Script: {instanceID: 14112}
+      Script: {instanceID: 13822}
+    - Class: 114
+      Script: {instanceID: 13878}
+    - Class: 114
+      Script: {instanceID: 13892}
     - Class: 114
       Script: {instanceID: 14118}
     - Class: 114
-      Script: {instanceID: 14394}
+      Script: {instanceID: 14124}
     - Class: 114
-      Script: {instanceID: 14406}
+      Script: {instanceID: 14400}
     - Class: 114
-      Script: {instanceID: 14450}
+      Script: {instanceID: 14412}
     - Class: 114
-      Script: {instanceID: 14500}
+      Script: {instanceID: 14456}
     - Class: 114
-      Script: {instanceID: 14522}
+      Script: {instanceID: 14506}
     - Class: 114
-      Script: {instanceID: 802152}
+      Script: {instanceID: 14528}
     - Class: 114
-      Script: {instanceID: 838694}
+      Script: {instanceID: 379632}
     - Class: 114
-      Script: {instanceID: 838716}
-    - Class: 114
-      Script: {instanceID: 1091748}
+      Script: {instanceID: 542226}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -236,6 +241,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: 7a57c7a2f270bb1947e15c93da7dc757
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DiceRoller
   - hash:
       serializedVersion: 2
       Hash: 98b1737b548ccc27be074001e3e3e190
@@ -527,12 +538,6 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SheildTempBuff
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
@@ -550,7 +555,7 @@ ScriptsOnlyBuild:
     className: SwapFullSkin
   - hash:
       serializedVersion: 2
-      Hash: 27c7c684141dd5febbca204a58ffa641
+      Hash: 71d206082e39adca2fcef342ff816cdb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Item
@@ -574,6 +579,12 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+      Hash: 399eda16e001422a94892ffd7bf7b293
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FightDisplay
+  - hash:
+      serializedVersion: 2
       Hash: 5aef5efd79e0a408f6129469785187f4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -584,6 +595,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: bd8cfb4fe082a15fd2754edbc5d3e59a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HideButton
   - hash:
       serializedVersion: 2
       Hash: bbf2ea8fbfb00abc89e081a054d926f2
@@ -668,6 +685,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GridManager
+  - hash:
+      serializedVersion: 2
+      Hash: bb098992ded728348eb344668b00a969
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EncounterPopUp
   - hash:
       serializedVersion: 2
       Hash: c2665bf0fe94664e330c31a5d47e98a9
@@ -808,12 +831,6 @@ ScriptsOnlyBuild:
     className: StairsDown
   - hash:
       serializedVersion: 2
-      Hash: 1d41877b5ee8ae62502482f6344336f3
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Tile
-  - hash:
-      serializedVersion: 2
       Hash: 9726bc46e15d44429bd38fb013657f1e
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner
@@ -886,34 +903,16 @@ ScriptsOnlyBuild:
     className: SwapPart
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 78f5100691cc261d1d72c2299084b210
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: BuffonEncounter
+    className: ItemEncounter
   - hash:
       serializedVersion: 2
-      Hash: bb098992ded728348eb344668b00a969
+      Hash: 71d206082e39adca2fcef342ff816cdb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: EncounterPopUp
-  - hash:
-      serializedVersion: 2
-      Hash: 399eda16e001422a94892ffd7bf7b293
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: FightDisplay
-  - hash:
-      serializedVersion: 2
-      Hash: 7a57c7a2f270bb1947e15c93da7dc757
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: DiceRoller
-  - hash:
-      serializedVersion: 2
-      Hash: bd8cfb4fe082a15fd2754edbc5d3e59a
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: HideButton
+    className: ItemAreaBuff
   platform: 5
   scenePathNames:
   - Assets/Scenes/_DungeonScene.unity

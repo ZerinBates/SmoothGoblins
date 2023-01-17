@@ -14,14 +14,19 @@ public class UnitBasic : MonoBehaviour
     private List<Buff> buffs = new List<Buff>();
     public string UnitName;
     public bool set = false;
+    //buffs and triggers
     public void AddBuff(Buff daBuff)
     {
-        if (!buffs.Contains(daBuff))
+        List<Buff> buffsWithSameType = buffs.FindAll(b => b.GetType() == daBuff.GetType());
+        if (buffsWithSameType.Count == 0)
         {
             daBuff.OnApply(this);
             buffs.Add(daBuff);
-
         }
+    }
+    public void RemoveBuff(Buff daBuff)
+    {
+        buffs.Remove(daBuff);
     }
     public Trigger getTrigger(string name)
     {
@@ -61,13 +66,17 @@ public class UnitBasic : MonoBehaviour
     }
     public void trigger(TriggerEvent ev, UnitBasic uni)
     {
-        foreach (Buff buff in buffs)
+        List<Buff> buffsToTrigger = new List<Buff>(buffs);
+        foreach (Buff buff in buffsToTrigger)
         {
-            if (buff.GetTrigger() == ev)
+
+            if (buff.GetAssigendUnit() == uni)
             {
+              //  Debug.Log(uni);
                 buff.OnUpdate(ev, uni);
             }
         }
+        /*
         foreach (Trigger t in triggers)
         {
             if (triggers.Contains(t))
@@ -81,8 +90,9 @@ public class UnitBasic : MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
     }
+    //stats
     public StatBasic GetStats()
     {
         return Stats;
@@ -91,6 +101,7 @@ public class UnitBasic : MonoBehaviour
     {
         return Stats.SkillCheck(skill);
     }
+    //attack
     public double CanHit(Tile spot, Tile enemy)
     {
         int x1 = spot.x;
@@ -194,6 +205,7 @@ public class UnitBasic : MonoBehaviour
         }
         return true;
     }
+    //lighting
     public void Light()
     {
         if (Stats.Hp > 0)

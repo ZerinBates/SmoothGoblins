@@ -102,7 +102,7 @@ public class UnitManager : MonoBehaviour
         else
         {
 
-            // ActivePoint = 1;
+            ActivePoint = 1;
             MovePoint = 1;
             SetSelectedHero((HeroBasic)initiative[trackerInitiative]);
             TriggerManager.Instance.UpdateTrigger(TriggerEvent.TurnStart, SelectedHero);
@@ -252,10 +252,15 @@ public class UnitManager : MonoBehaviour
             if (SelectedHero.Attack(enemy))
             {
                 MovePoint--;
+                
                 UnitManager.Instance.NextInitiative();
             }
 
         }
+    }
+    public void checkEnd()
+    {
+
     }
     public void SelectEnemyTurn()
     {
